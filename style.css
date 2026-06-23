@@ -1,0 +1,488 @@
+/* ==========================================================================
+   RESET Y VARIABLES GLOBAL
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-dark: #07060a;
+    --bg-deep: #120e16;
+    --text-light: #f5f3f7;
+    --accent-glow: #8a2be2;
+    --accent-cyan: #00f5ff;
+    --accent-gold: #dfb15b;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fondo animado abstracto de fondo */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 30% 20%, #1a0b2e 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, #051c24 0%, transparent 50%);
+    z-index: -2;
+    animation: pulseBackground 15s ease-in-out infinite alternate;
+}
+
+@keyframes pulseBackground {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+}
+
+/* ==========================================================================
+   NAVEGACIÓN (Nivel de Sueño Elevado)
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--text-light);
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-cyan);
+    transition: width 0.4s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 8px var(--accent-cyan);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6rem;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 550px;
+    z-index: 2;
+}
+
+.glitch-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+    animation: floatText 4s ease-in-out infinite alternate;
+}
+
+.highlight {
+    color: var(--accent-gold);
+    text-shadow: 0 0 15px rgba(223, 177, 91, 0.4);
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+/* Botón CTA Magnético */
+.btn-cta {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--text-light);
+    color: var(--text-light);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.btn-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.btn-cta:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+.btn-cta:hover::before {
+    left: 100%;
+}
+
+/* Objeto Surrealista Flotante en CSS */
+.hero-floating-art {
+    margin-right: 4rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portal-sphere {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--accent-glow), #4b0082, var(--accent-cyan));
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.8), 0 0 50px rgba(138, 43, 226, 0.5);
+    animation: sphereMorph 8s ease-in-out infinite alternate, floatOrb 6s ease-in-out infinite alternate;
+}
+
+@keyframes sphereMorph {
+    0% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+    100% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; }
+}
+
+@keyframes floatOrb {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-25px) rotate(45deg); }
+}
+
+@keyframes floatText {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+/* ==========================================================================
+   SECCIÓN MANIFIESTO
+   ========================================================================== */
+.manifesto-section {
+    padding: 10rem 4rem;
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-deep);
+    border-top: 1px solid rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.manifesto-box {
+    max-width: 800px;
+    text-align: center;
+}
+
+.manifesto-box h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-light);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.manifesto-box p {
+    font-size: 1.1rem;
+    line-height: 2;
+    opacity: 0.7;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   GALERÍA DE CUADROS (Efectos Perspectiva e Impacto)
+   ========================================================================== */
+.gallery-section {
+    padding: 8rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 5rem;
+    letter-spacing: 3px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 4rem;
+    perspective: 1000px; /* Habilita el entorno 3D */
+}
+
+.art-card {
+    background: #18141d;
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 1.5rem;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+/* Envoltorio de Imagen con Efectos Abstractos de Marcador de Posición */
+.card-image-wrapper {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    background-color: #000;
+}
+
+/* Simulaciones de obras de arte surrealistas con degradados pesados */
+.abstract-art-1 {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #2c003e, #032535);
+    mix-blend-mode: color-dodge;
+    transition: transform 0.8s ease;
+}
+.abstract-art-2 {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #9b59b6, #111);
+    transition: transform 0.8s ease;
+}
+.abstract-art-3 {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #4a00e0, #8e2de2, #000);
+    transition: transform 0.8s ease;
+}
+
+/* Efectos de Hover Inmersivos (Efecto Inclinación Surrealista) */
+.art-card:hover {
+    transform: rotateY(10deg) rotateX(5deg) translateY(-15px);
+    box-shadow: -15px 20px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(138, 43, 226, 0.2);
+    border-color: rgba(138, 43, 226, 0.4);
+}
+
+.art-card:hover .abstract-art-1,
+.art-card:hover .abstract-art-2,
+.art-card:hover .abstract-art-3 {
+    transform: scale(1.1) cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card-info {
+    margin-top: 1.5rem;
+    transform: translateZ(30px); /* Saca el texto hacia adelante en el espacio 3D */
+}
+
+.card-info h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.card-info p {
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   BOTÓN FLOTANTE WHATSAPP (Místico)
+   ========================================================================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 65px;
+    height: 65px;
+    background-color: #120e16;
+    border: 1px solid #25d366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
+    z-index: 100;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: floatButton 3s ease-in-out infinite alternate;
+}
+
+.whatsapp-icon {
+    width: 30px;
+    height: 30px;
+    fill: #25d366;
+    transition: fill 0.4s ease;
+}
+
+/* Tooltip lateral interactivo */
+.tooltip-text {
+    position: absolute;
+    right: 80px;
+    background-color: #25d366;
+    color: #000;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+}
+
+/* Efectos hover de la llamada de acción */
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #25d366;
+    box-shadow: 0 0 30px rgba(37, 211, 102, 0.7);
+}
+
+.whatsapp-float:hover .whatsapp-icon {
+    fill: #000;
+}
+
+.whatsapp-float:hover .tooltip-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@keyframes floatButton {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-12px); }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 3rem;
+    font-size: 0.8rem;
+    opacity: 0.4;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(255,255,255,0.02);
+}
+
+/* ==========================================================================
+   RESPONSIVE (Adaptabilidad para Celulares y Pantallas Pequeñas)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. Modificación de la Barra de Navegación */
+    .navbar {
+        flex-direction: column; /* Alinea el logo y los enlaces verticalmente */
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 1rem;
+        position: relative; /* Evita que tape el contenido del hero en móviles */
+    }
+
+    .logo {
+        margin-bottom: 1.5rem; /* Espacio entre el logo centrado y los enlaces de abajo */
+        text-align: center;
+        font-size: 2.2rem; /* Un poco más grande para que destaque en móvil */
+    }
+
+    .navbar nav {
+        display: flex;
+        flex-direction: row; /* Mantiene los enlaces uno al lado del otro */
+        justify-content: center;
+        width: 100%;
+        gap: 1.5rem; /* Espacio controlado entre cada enlace */
+    }
+
+    .nav-link {
+        margin-left: 0; /* Quitamos el margen izquierdo viejo para que no descentre */
+        font-size: 0.85rem;
+    }
+
+    /* 2. Ajustes extras para el Hero en móvil (para que no se rompa el diseño) */
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 4rem 1.5rem;
+        min-height: auto;
+    }
+
+    .hero-content {
+        margin-bottom: 3rem;
+        max-width: 100%;
+    }
+
+    .glitch-title {
+        font-size: 2.5rem; /* Título un poco más pequeño para pantallas de celular */
+    }
+
+    .hero-floating-art {
+        margin-right: 0;
+    }
+
+    .portal-sphere {
+        width: 180px;
+        height: 180px; /* Reducimos la esfera portal para que quepa bien */
+    }
+
+    /* Ajuste de márgenes en las secciones de la galería */
+    .manifesto-section, .gallery-section {
+        padding: 5rem 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    /* Cambiamos el botón de WhatsApp a la esquina izquierda en móviles 
+       para que no choque con los botones virtuales del sistema */
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+    }
+}
